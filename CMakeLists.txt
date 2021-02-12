@@ -60,15 +60,17 @@ else()
 	add_definitions(-DNDEBUG)
 endif(CMAKE_BUILD_TYPE MATCHES Debug)
 
+
+find_package (Python3 COMPONENTS Interpreter)
+
 execute_process(
-	COMMAND python binding_generator.py
+	COMMAND ${Python3_EXECUTABLE} binding_generator.py
 	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-# Set the c++ standard to c++14
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+#set(CMAKE_CXX_STANDARD 17)
+#set(CMAKE_CXX_STANDARD_REQUIRED ON)
+#set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Input from user for godot headers and the api file
 set(GODOT_HEADERS_DIR "godot_headers" CACHE STRING "")
