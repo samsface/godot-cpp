@@ -380,12 +380,12 @@ if env['platform'] == 'android':
 if env['platform'] == 'ios':
     arch_suffix = env['ios_arch']
 
-library = env.StaticLibrary(
-    target='bin/' + 'libgodot-cpp.{}.{}.{}{}'.format(
-        env['platform'],
-        env['target'],
-        arch_suffix,
-        env['LIBSUFFIX']
-    ), source=sources
-)
-Default(library)
+#library = env.StaticLibrary(
+#    target='bin/' + 'libgodot-cpp.{}.{}.{}{}'.format(
+#        env['platform'],
+#        env['target'],
+#        arch_suffix,
+#        env['LIBSUFFIX']
+#    ), source=sources
+#)
+#Default(library)

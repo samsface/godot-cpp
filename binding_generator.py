@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import json
+import json, os
 
 # comment.
 
@@ -848,3 +848,6 @@ def escape_cpp(name):
     if name in escapes:
         return escapes[name]
     return name
+
+if __name__ == "__main__":
+    generate_bindings(os.path.join(os.getcwd(), 'godot_headers', 'api.json'), True)
