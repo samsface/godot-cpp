@@ -171,9 +171,9 @@ file(GLOB_RECURSE HEADERS include/*.h**)
 # Define our godot-cpp library
 add_library(${PROJECT_NAME}
 		${SOURCES}
-		${SOURCES_FILE_LIST}
+		"${SOURCES_FILE_LIST}"
 		${HEADERS}
-		${HEADERS_FILE_LIST}
+		"${HEADERS_FILE_LIST}"
 )
 target_include_directories(${PROJECT_NAME}
 	PUBLIC
