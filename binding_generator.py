@@ -16,6 +16,8 @@ classes = []
 
 def print_file_list(api_filepath, output_dir, headers=False, sources=False):
     global classes
+    output_dir = os.path.normpath(output_dir)
+
     end = ';'
     with open(api_filepath) as api_file:
         classes = json.load(api_file)
