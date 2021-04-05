@@ -164,6 +164,9 @@ add_custom_command(OUTPUT ${HEADERS_FILE_LIST} ${SOURCES_FILE_LIST}
 		COMMENT Generating Bindings
 )
 
+cmake_path(CONVERT ${SOURCES_FILE_LIST} TO_CMAKE_PATH_LIST SOURCES_FILE_LIST)
+cmake_path(CONVERT ${HEADERS_FILE_LIST} TO_CMAKE_PATH_LIST HEADERS_FILE_LIST)
+
 # Get Sources
 file(GLOB_RECURSE SOURCES src/*.c**)
 file(GLOB_RECURSE HEADERS include/*.h**)
@@ -171,9 +174,9 @@ file(GLOB_RECURSE HEADERS include/*.h**)
 # Define our godot-cpp library
 add_library(${PROJECT_NAME}
 		${SOURCES}
-		"${SOURCES_FILE_LIST}"
+		${SOURCES_FILE_LIST}
 		${HEADERS}
-		"${HEADERS_FILE_LIST}"
+		${HEADERS_FILE_LIST}
 )
 target_include_directories(${PROJECT_NAME}
 	PUBLIC
