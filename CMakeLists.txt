@@ -107,7 +107,7 @@ else()
 	set(GODOT_LINKER_FLAGS "-static-libgcc -static-libstdc++ -Wl,-R,'$$ORIGIN'")
 
 	# Hmm.. maybe to strikt?
-	set(GODOT_COMPILE_FLAGS "-fPIC -g -Wwrite-strings")
+	set(GODOT_COMPILE_FLAGS "-fPIC -Wwrite-strings")
 	set(GODOT_COMPILE_FLAGS "${GODOT_COMPILE_FLAGS} -Wchar-subscripts -Wcomment -Wdisabled-optimization")
 	set(GODOT_COMPILE_FLAGS "${GODOT_COMPILE_FLAGS} -Wformat -Wformat=2 -Wformat-security -Wformat-y2k")
 	set(GODOT_COMPILE_FLAGS "${GODOT_COMPILE_FLAGS} -Wimport -Winit-self -Winline -Winvalid-pch -Werror")
@@ -163,9 +163,6 @@ add_custom_command(OUTPUT ${HEADERS_FILE_LIST} ${SOURCES_FILE_LIST}
 		DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/binding_generator.py
 		COMMENT Generating Bindings
 )
-
-cmake_path(CONVERT ${SOURCES_FILE_LIST} TO_CMAKE_PATH_LIST SOURCES_FILE_LIST)
-cmake_path(CONVERT ${HEADERS_FILE_LIST} TO_CMAKE_PATH_LIST HEADERS_FILE_LIST)
 
 # Get Sources
 file(GLOB_RECURSE SOURCES src/*.c**)
