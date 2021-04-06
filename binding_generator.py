@@ -3,6 +3,7 @@ from __future__ import print_function
 import json
 import os
 import errno
+from pathlib import Path, PurePosixPath
 
 # Convenience function for using template get_node
 def correct_method_name(method_list):
@@ -16,23 +17,23 @@ classes = []
 
 def print_file_list(api_filepath, output_dir, headers=False, sources=False):
     global classes
-    output_dir = os.path.normpath(output_dir)
+
 
     end = ';'
     with open(api_filepath) as api_file:
         classes = json.load(api_file)
-    include_gen_folder = os.path.join(output_dir, 'include', 'gen')
-    source_gen_folder = os.path.join(output_dir, 'src', 'gen')
+    include_gen_folder = PurePosixPath(output_dir, 'include', 'gen')
+    source_gen_folder = PurePosixPath(output_dir, 'src', 'gen')
     for _class in classes:
-        header_filename = os.path.join(include_gen_folder, strip_name(_class["name"]) + ".hpp")
-        source_filename = os.path.join(source_gen_folder, strip_name(_class["name"]) + ".cpp")
+        header_filename = PurePosixPath(include_gen_folder, strip_name(_class["name"]) + ".hpp")
+        source_filename = PurePosixPath(source_gen_folder, strip_name(_class["name"]) + ".cpp")
         if headers:
             print(header_filename, end=end)
         if sources:
             print(source_filename, end=end)
-    icall_header_filename = os.path.join(include_gen_folder, '__icalls.hpp')
-    register_types_filename = os.path.join(source_gen_folder, '__register_types.cpp')
-    init_method_bindings_filename = os.path.join(source_gen_folder, '__init_method_bindings.cpp')
+    icall_header_filename = PurePosixPath(include_gen_folder, '__icalls.hpp')
+    register_types_filename = PurePosixPath(source_gen_folder, '__register_types.cpp')
+    init_method_bindings_filename = PurePosixPath(source_gen_folder, '__init_method_bindings.cpp')
     if headers:
         print(icall_header_filename, end=end)
     if sources:
